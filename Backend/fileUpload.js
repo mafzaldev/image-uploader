@@ -1,5 +1,6 @@
 const multer = require("multer");
-const crypto = require("crypto");
+
+const { v4: uuidv4 } = require("uuid");
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -15,7 +16,7 @@ const fileUpload = multer({
     },
     filename: (req, file, cb) => {
       const ext = MIME_TYPE_MAP[file.mimetype];
-      cb(null, crypto.randomUUID() + "." + ext);
+      cb(null, uuidv4() + "." + ext);
     },
   }),
 

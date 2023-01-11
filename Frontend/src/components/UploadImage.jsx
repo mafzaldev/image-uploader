@@ -5,27 +5,15 @@ import Button from "./Button";
 const UploadImage = ({ onInput }) => {
   const fileRef = useRef(null);
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
   const handleImageUpload = (event, method) => {
     event.preventDefault();
-    let pickedFile;
-    if (method === "dropped") {
-      console.log("dropped");
-      console.log(event.dataTransfer.files[0]);
-    } else {
-      console.log("picked");
 
-      console.log(event.target.files[0]);
+    let pickedFile =
+      method === "dropped" ? event.dataTransfer.files : event.target.files;
+
+    if (pickedFile && pickedFile.length === 1) {
+      onInput(pickedFile[0]);
     }
-
-    // if (event.target.files && event.target.files.length === 1) {
-    //   pickedFile = event.target.files[0];
-    //   console.log(pickedFile);
-    //   onInput(pickedFile);
-    // }
   };
 
   return (
@@ -34,7 +22,7 @@ const UploadImage = ({ onInput }) => {
       <div className="text-xs	text-[#828282]">File should be jpeg or png</div>
       <div
         className="flex-center gap-5 h-56 w-80 bg-[#F6F8FB] border-[1px] border-dashed border-[#97BEF4] rounded-xl"
-        onDragOver={handleDragOver}
+        onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => handleImageUpload(e, "dropped")}
       >
         <img src={Image} alt="" />

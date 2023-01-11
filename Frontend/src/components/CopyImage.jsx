@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
-
 import tick from "../assets/tick.svg";
 
-const CopyImage = () => {
-  const myStyle = {
-    backgroundImage:
-      "url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  };
+const SERVER_ADDRESS = "http://localhost:3000/";
+
+const CopyImage = ({ data }) => {
   return (
     <>
       <img src={tick} alt="tick" />
       <h1 className="font-medium text-[#4F4F4F]">Uploaded Successfully!</h1>
-      <div
-        className="bg-cover	h-56 w-80 bg-[#F6F8FB] border-[1px] border-dashed border-[#97BEF4] rounded-xl"
-        style={myStyle}
-      ></div>
+      <div className="h-56 w-80 bg-[#F6F8FB] border-[1px] border-dashed border-[#97BEF4] rounded-xl">
+        <img
+          src={`${SERVER_ADDRESS}${data.imageURL}`}
+          alt=""
+          className="h-56 w-80 object-contain"
+        />
+      </div>
       <div className="w-80 h-9 flex justify-center items-center border-[1px] border-solid border-[#E0E0E0] rounded-lg truncate">
-        <span className="w-56 text-xs text-[#4F4F4F] truncate">
-          https://www.figma.com/file/NxbZm3CAovYh89dFXe7EOw/Image-Uploader?node-id=1%3A52&t=GbOIDXbFT9yRqXXh-0
+        <span className="w-56 text-xs font-medium text-[#4F4F4F] truncate">
+          {`${SERVER_ADDRESS}${data.imageURL}`}
         </span>
-        <Button>Copy Link</Button>
+        <Button
+          onClick={() =>
+            navigator.clipboard.writeText(`${SERVER_ADDRESS}${data.imageURL}`)
+          }
+        >
+          Copy Link
+        </Button>
       </div>
     </>
   );

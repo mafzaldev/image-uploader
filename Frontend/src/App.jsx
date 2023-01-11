@@ -1,14 +1,37 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import UploadImage from "./components/UploadImage";
 import Loading from "./components/Loading";
 import CopyImage from "./components/CopyImage";
 
 import "./App.css";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "UPLOADING": {
+      return {
+        ...state,
+        uploading: (prev) => !prev,
+      };
+    }
+    case "SET_IMAGE": {
+      return {
+        ...state,
+        image: action.imagePayLoad,
+      };
+    }
+  }
+  throw Error("Unknown action.");
+}
+
 function App() {
+  const initialState = { uploading: false, image: null };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const onInputHandler = async (pickedImage) => {
     const formData = new FormData();
     formData.append("image", pickedImage);
 
+    dispatch({ type: "UPLOADING" });
     try {
       fetch("http://localhost:3000/postImage", {
         method: "POST",
@@ -16,7 +39,7 @@ function App() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          dispatch({ type: "SET_IMAGE", imagePayLoad: data });
         });
     } catch (err) {
       console.log(err);
@@ -26,7 +49,11 @@ function App() {
   return (
     <div className="flex-center h-screen">
       <div className="gap-4 text-lg w-[402px] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.1)] rounded-xl flex-center py-8">
-        <UploadImage onInput={onInputHandler} />
+        {!state.uploading && <UploadImage onInput={onInputHandler} />}
+        {state.uploading && !state.image && (
+          <Loading onInput={onInputHandler} />
+        )}
+        {state.image && <CopyImage data={state.image} />}
       </div>
     </div>
   );

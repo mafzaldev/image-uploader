@@ -21,7 +21,6 @@ const fileUpload = multer({
   }),
 
   fileFilter: (req, file, cb) => {
-    console.log(req.body, "in fileFilter");
     const isValid = !!MIME_TYPE_MAP[file.mimetype];
     let error = isValid ? null : new Error("Invalid file type");
     cb(error, isValid);

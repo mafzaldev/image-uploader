@@ -37,6 +37,7 @@ function App() {
 
     try {
       fetch(`${API_URL}/postImage`, {
+        "Access-Control-Allow-Origin": "*",
         method: "POST",
         body: formData,
       })

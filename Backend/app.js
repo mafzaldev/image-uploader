@@ -16,6 +16,11 @@ app.use(
 );
 
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
+
+app.get("/", (req, res) => {
+  res.send("Image Uploading API GET endpoint");
+});
+
 app.post("/postImage", fileUpload.single("image"), (req, res) => {
   if (req.method === "OPTIONS") {
     return next();

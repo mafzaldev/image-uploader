@@ -33,20 +33,19 @@ function App() {
     formData.append("image", pickedImage);
 
     dispatch({ type: "UPLOADING" });
-    // await new Promise((r) => setTimeout(r, 5000));
+    console.log(`${API_URL}/postImage`, "pickedImage");
+    await new Promise((r) => setTimeout(r, 2000));
 
     try {
-      fetch(`${API_URL}/postImage`, {
+      const response = await fetch(`${API_URL}/postImage`, {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
         body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch({ type: "SET_IMAGE", imagePayLoad: data });
-        });
+      });
+      const data = await response.json();
+      dispatch({ type: "SET_IMAGE", imagePayLoad: data });
     } catch (err) {
       console.log(err);
     }

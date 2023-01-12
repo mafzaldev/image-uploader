@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="#">
       Demo
     </a>
     <span> | </span>
@@ -40,10 +40,9 @@
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+- The project is not available online right now due to some deployment issues. You can see the demo either in the video above or by runnning locally on your system.
+- Overall the development process was good, faced some minor issues, but facing a lots of issues while deployment.
+- I practically understood the useReducer hook, it makes the work easier than useState.
 
 ### Built With
 
@@ -87,6 +86,9 @@ $ npm run dev
 # Move to Backend directory
 $ Press Ctrl+Shift+`
 $ cd Backend
+
+#Create a .env file with your MongoDB URI
+MONOGO_URI="YOUR_MONGO_URI"
 
 # Install dependencies
 $ npm install

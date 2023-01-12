@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import UploadImage from "./components/UploadImage";
 import Loading from "./components/Loading";
 import CopyImage from "./components/CopyImage";
+import { API_URL } from "./utils";
 
 import "./App.css";
 
@@ -32,8 +33,10 @@ function App() {
     formData.append("image", pickedImage);
 
     dispatch({ type: "UPLOADING" });
+    // await new Promise((r) => setTimeout(r, 5000));
+
     try {
-      fetch("http://localhost:3000/postImage", {
+      fetch(`${API_URL}/postImage`, {
         method: "POST",
         body: formData,
       })

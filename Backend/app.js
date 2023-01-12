@@ -5,15 +5,22 @@ const dotenv = require("dotenv").config();
 const cors = require("cors");
 const fileUpload = require("./fileUpload.js");
 const Image = require("./imageSchema.js");
+
 const app = express();
 
+app.use(express.json());
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
 app.use(
   cors({
     origin: "*",
   })
 );
-app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  next();
+});
 
 app.post("/postImage", fileUpload.single("image"), (req, res) => {
   if (req.file === undefined) {

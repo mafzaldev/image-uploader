@@ -9,15 +9,13 @@ const Image = require("./imageSchema.js");
 const app = express();
 
 app.use(express.json());
-app.use("/uploads/images", express.static(path.join("uploads", "images")));
-app.use(cors());
-app.use((req, res, next) => {
-  res.header({ "Access-Control-Allow-Origin": "*" });
-  res.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST", "OPTIONS");
-  next();
-});
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
+app.use("/uploads/images", express.static(path.join("uploads", "images")));
 app.post("/postImage", fileUpload.single("image"), (req, res) => {
   if (req.method === "OPTIONS") {
     return next();

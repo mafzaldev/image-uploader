@@ -37,10 +37,10 @@ function App() {
 
     try {
       fetch(`${API_URL}/postImage`, {
+        method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
-        method: "POST",
         body: formData,
       })
         .then((response) => response.json())

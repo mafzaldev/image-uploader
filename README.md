@@ -40,9 +40,9 @@ https://user-images.githubusercontent.com/78255759/212073071-c861291f-647a-4a1f-
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
-- The project is not available online right now due to some deployment issues. You can see the demo either in the video above or by runnning locally on your system.
-- Overall the development process was good, faced some minor issues, but facing a lots of issues while deployment.
-- I practically understood the useReducer hook, it makes the work easier than useState.
+- The project demo can be accessed [here](https://reactjs.org/)
+- Overall the development process was good, faced some minor issues, but faced a lots of issues while deployment.
+- I practically understood the useReducer hook, which makes the work easier than useState.
 
 ### Built With
 

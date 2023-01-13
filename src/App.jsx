@@ -28,10 +28,6 @@ function App() {
     uploading: false,
     image: null,
   };
-  const initialState = {
-    uploading: false,
-    image: null,
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const onInputHandler = async (pickedFile) => {
@@ -44,18 +40,6 @@ function App() {
     };
 
     dispatch({ type: "UPLOADING" });
-
-    // await new Promise((r) => setTimeout(r, 2000));
-
-    // await new Promise((r) => setTimeout(r, 2000));
-
-    fetch("https://api.Cloudinary.com/v1_1/duidlslzh/image/upload", options)
-      .then((response) => response.json())
-      .then((imageData) => {
-        dispatch({ type: "SET_IMAGE", imagePayLoad: imageData.secure_url });
-        dispatch({ type: "UPLOADING" });
-      })
-      .catch((err) => console.log(err));
     fetch("https://api.Cloudinary.com/v1_1/duidlslzh/image/upload", options)
       .then((response) => response.json())
       .then((imageData) => {
@@ -69,8 +53,6 @@ function App() {
     <div className="flex-center h-screen">
       <div className="gap-4 text-lg w-[402px] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.1)] rounded-xl flex-center py-8">
         {!state.uploading && <UploadImage onInput={onInputHandler} />}
-        {state.uploading && !state.image && <Loading />}
-        {state.image && <CopyImage imageURL={state.image} />}
         {state.uploading && !state.image && <Loading />}
         {state.image && <CopyImage imageURL={state.image} />}
       </div>

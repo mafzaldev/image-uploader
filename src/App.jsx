@@ -10,7 +10,7 @@ function reducer(state, action) {
     case "UPLOADING": {
       return {
         ...state,
-        uploading: (prev) => !prev,
+        uploading: !state.uploading,
       };
     }
     case "SET_IMAGE": {
@@ -52,9 +52,13 @@ function App() {
   return (
     <div className="flex-center h-screen">
       <div className="gap-4 text-lg w-[402px] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.1)] rounded-xl flex-center py-8">
-        {!state.uploading && <UploadImage onInput={onInputHandler} />}
+        {!state.uploading && !state.image && (
+          <UploadImage onInput={onInputHandler} />
+        )}
         {state.uploading && !state.image && <Loading />}
-        {state.image && <CopyImage imageURL={state.image} />}
+        {state.image && (
+          <CopyImage imageURL={state.image} dispatch={dispatch} />
+        )}
       </div>
     </div>
   );

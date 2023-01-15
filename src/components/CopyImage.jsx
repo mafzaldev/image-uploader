@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import tick from "../assets/tick.svg";
 
-const CopyImage = ({ imageURL }) => {
+const CopyImage = ({ imageURL, dispatch }) => {
   return (
     <>
       <img src={tick} alt="tick" />
@@ -18,6 +18,13 @@ const CopyImage = ({ imageURL }) => {
           Copy Link
         </Button>
       </div>
+      <Button
+        onClick={() => {
+          dispatch({ type: "SET_IMAGE", imagePayLoad: null });
+        }}
+      >
+        Upload another image
+      </Button>
     </>
   );
 };

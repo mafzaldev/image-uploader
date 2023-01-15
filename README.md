@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="#">
+    <a href="https://imagexchange.netlify.app/">
       Demo
     </a>
     <span> | </span>
@@ -40,7 +40,7 @@ https://user-images.githubusercontent.com/78255759/212073071-c861291f-647a-4a1f-
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
-- The project demo can be accessed [here](https://reactjs.org/)
+- The project demo can be accessed [here](https://imagexchange.netlify.app/)
 - Overall the development process was good, faced some minor issues, but faced a lots of issues while deployment.
 - I practically understood the useReducer hook, which makes the work easier than useState.
 
@@ -50,7 +50,6 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 - [React](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
-- [Node.js](https://nodejs.org/en/)
 
 ## Features
 
@@ -74,27 +73,14 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/mafzaldev/image-uploader
 
-# Move to Frontend directory
-$ cd Frontend
-
 # Install dependencies
 $ npm install
+
+#Create a .env file with your CLOUDINARY UPLOAD PRESET
+VITE_UPLOAD_PRESET="YOUR_CLOUDINARY_UPLOAD_PRESET"
 
 # Run the app
 $ npm run dev
-
-# Move to Backend directory
-$ Press Ctrl+Shift+`
-$ cd Backend
-
-#Create a .env file with your MongoDB URI
-MONOGO_URI="YOUR_MONGO_URI"
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
 ```
 
 ## Contact
